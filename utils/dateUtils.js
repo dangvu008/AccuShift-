@@ -1,5 +1,4 @@
 import { format, addDays, subDays, startOfWeek } from "date-fns"
-import { getLocale } from "./localeHelper"
 
 // Format ngày theo định dạng yyyy-MM-dd
 export const formatDate = (date) => {
@@ -8,8 +7,8 @@ export const formatDate = (date) => {
 
 // Format ngày theo ngôn ngữ
 export const formatDateLocale = (date, language = "vi") => {
-  const locale = getLocale(language)
-  return format(date, "EEEE, dd/MM/yyyy", { locale })
+  // Trong Snack, không sử dụng locale
+  return format(date, "EEEE, dd/MM/yyyy")
 }
 
 // Format thời gian theo định dạng HH:mm
@@ -36,24 +35,24 @@ export const getNextDay = (date = new Date()) => {
 
 // Lấy tên ngày trong tuần
 export const getDayName = (date, language = "vi") => {
-  const locale = getLocale(language)
-  return format(date, "EEEE", { locale })
+  // Trong Snack, không sử dụng locale
+  return format(date, "EEEE")
 }
 
 // Lấy tên ngày trong tuần viết tắt
 export const getDayShortName = (date, language = "vi") => {
-  const locale = getLocale(language)
-  return format(date, "EEE", { locale })
+  // Trong Snack, không sử dụng locale
+  return format(date, "EEE")
 }
 
 // Lấy tên tháng
 export const getMonthName = (date, language = "vi") => {
-  const locale = getLocale(language)
-  return format(date, "MMMM", { locale })
+  // Trong Snack, không sử dụng locale
+  return format(date, "MMMM")
 }
 
 // Lấy tên tháng viết tắt
 export const getMonthShortName = (date, language = "vi") => {
-  const locale = getLocale(language)
-  return format(date, "MMM", { locale })
+  // Trong Snack, không sử dụng locale
+  return format(date, "MMM")
 }

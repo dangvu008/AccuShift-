@@ -5,7 +5,6 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, RefreshCon
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Ionicons } from "@expo/vector-icons"
 import { format } from "date-fns"
-import { getLocale } from "../utils/localeHelper"
 
 // Import from index files
 import {
@@ -138,8 +137,8 @@ const HomeScreen = ({ navigation }) => {
 
   // Format ngày giờ theo ngôn ngữ
   const formatDateTime = (date) => {
-    const locale = getLocale(language)
-    return format(date, "EEEE, dd/MM/yyyy", { locale })
+    // Trong Snack, không sử dụng locale
+    return format(date, "EEEE, dd/MM/yyyy")
   }
 
   const formatTime = (date) => {

@@ -1,9 +1,8 @@
 "use client"
 import { View, Text, StyleSheet, FlatList } from "react-native"
 import { format, parseISO } from "date-fns"
-import { getLocale } from "../../utils/localeHelper"
 
-const DailyStatusList = ({ month, dailyWorkStatus, getStatusColor, theme, language = "en" }) => {
+const DailyStatusList = ({ month, dailyWorkStatus, getStatusColor, theme }) => {
   // Filter work status for the selected month
   const monthData = dailyWorkStatus.filter((status) => status.date.startsWith(month))
 
@@ -35,8 +34,8 @@ const DailyStatusList = ({ month, dailyWorkStatus, getStatusColor, theme, langua
   // Format date for display
   const formatDate = (dateString) => {
     const date = parseISO(dateString)
-    const locale = getLocale(language)
-    return format(date, "EEE, MMM dd", { locale })
+    // Trong Snack, chúng ta không thể sử dụng locale
+    return format(date, "EEE, MMM dd")
   }
 
   // Render item

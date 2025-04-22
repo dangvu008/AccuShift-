@@ -1,5 +1,40 @@
-// Import các locale từ date-fns
-import { vi, enUS } from "date-fns/locale"
+// Trong Snack, chúng ta không thể import trực tiếp từ date-fns/locale
+// Tạo các đối tượng locale giả lập
+const vi = {
+  code: 'vi',
+  formatDistance: () => '',
+  formatRelative: () => '',
+  localize: {
+    month: () => '',
+    day: () => '',
+    dayPeriod: () => ''
+  },
+  match: {
+    month: () => '',
+    day: () => ''
+  },
+  options: {
+    weekStartsOn: 1
+  }
+}
+
+const enUS = {
+  code: 'en-US',
+  formatDistance: () => '',
+  formatRelative: () => '',
+  localize: {
+    month: () => '',
+    day: () => '',
+    dayPeriod: () => ''
+  },
+  match: {
+    month: () => '',
+    day: () => ''
+  },
+  options: {
+    weekStartsOn: 0
+  }
+}
 
 /**
  * Lấy locale dựa trên ngôn ngữ
