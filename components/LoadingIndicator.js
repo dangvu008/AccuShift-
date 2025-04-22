@@ -1,4 +1,3 @@
-"use client"
 import { View, ActivityIndicator, Text, StyleSheet } from "react-native"
 import { useTheme } from "../hooks"
 import { useState, useEffect } from "react"

@@ -1,4 +1,3 @@
-"use client"
 import { View, StyleSheet } from "react-native"
 import { useTheme } from "../../hooks"
 import Skeleton from "../ui/Skeleton"

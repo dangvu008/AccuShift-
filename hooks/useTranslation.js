@@ -1,5 +1,3 @@
-"use client"
-
 import { useContext } from "react"
 import { LanguageContext } from "../contexts"
 import vi from "../localization/vi"

@@ -1,4 +1,3 @@
-"use client"
 import { StyleSheet, Animated, Easing } from "react-native"
 import { useEffect, useRef } from "react"
 import { useTheme } from "../../hooks"

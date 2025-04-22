@@ -1,5 +1,4 @@
-"use client"
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react"
 import { useTheme, useWeather } from "../hooks"

@@ -1,5 +1,3 @@
-"use client"
-
 // Hàm lấy icon thời tiết từ Ionicons dựa vào điều kiện thời tiết
 export const getIonIconName = (condition, temperature) => {
   // Định nghĩa các icon thời tiết từ Ionicons
