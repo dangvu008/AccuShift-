@@ -28,8 +28,9 @@ import {
 // Import utils from the index.js file
 import { shiftUtils } from "./utils"
 
-// Update the imports to include SplashScreen
+// Update the imports to include SplashScreen and ErrorBoundary
 import { SplashScreen, LoadingIndicator } from "./components"
+import ErrorBoundary from "./components/ErrorBoundary"
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -133,21 +134,23 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <WorkProvider>
-          <NotificationProvider>
-            <AlarmProvider>
-              <WeatherProvider>
-                <BackupProvider>
-                  <AppContent />
-                </BackupProvider>
-              </WeatherProvider>
-            </AlarmProvider>
-          </NotificationProvider>
-        </WorkProvider>
-      </LanguageProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <LanguageProvider>
+          <WorkProvider>
+            <NotificationProvider>
+              <AlarmProvider>
+                <WeatherProvider>
+                  <BackupProvider>
+                    <AppContent />
+                  </BackupProvider>
+                </WeatherProvider>
+              </AlarmProvider>
+            </NotificationProvider>
+          </WorkProvider>
+        </LanguageProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 

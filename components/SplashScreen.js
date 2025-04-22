@@ -1,4 +1,3 @@
-"use client"
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
@@ -6,7 +5,7 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Ionicons name="time-outline" size={80} color="#4A6FFF" style={styles.logo} />
+        <Ionicons name="time-outline" size={80} color="#4A6FFF" />
         <Text style={styles.appName}>AccuShift</Text>
       </View>
       <ActivityIndicator size="large" color="#4A6FFF" style={styles.loader} />
@@ -26,15 +25,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 40,
   },
-  logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 16,
-  },
   appName: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#4A6FFF",
+    marginTop: 16,
   },
   loader: {
     marginBottom: 16,

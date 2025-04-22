@@ -19,9 +19,38 @@ const WeatherWidget = ({ onRefresh, showForecast = true }) => {
     border: isDarkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)",
   }
 
-  // Lấy icon thời tiết
-  const getWeatherIcon = (iconCode) => {
-    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+  // Lấy icon thời tiết từ Ionicons
+  const getWeatherIconName = (iconCode) => {
+    // Chuyển đổi mã icon từ OpenWeatherMap sang Ionicons
+    switch (iconCode) {
+      case '01d':
+      case '01n':
+        return 'sunny-outline'
+      case '02d':
+      case '02n':
+        return 'partly-sunny-outline'
+      case '03d':
+      case '03n':
+      case '04d':
+      case '04n':
+        return 'cloud-outline'
+      case '09d':
+      case '09n':
+      case '10d':
+      case '10n':
+        return 'rainy-outline'
+      case '11d':
+      case '11n':
+        return 'thunderstorm-outline'
+      case '13d':
+      case '13n':
+        return 'snow-outline'
+      case '50d':
+      case '50n':
+        return 'water-outline'
+      default:
+        return 'cloud-outline'
+    }
   }
 
   // Format thời gian
@@ -65,7 +94,7 @@ const WeatherWidget = ({ onRefresh, showForecast = true }) => {
       >
         <View style={styles.weatherMain}>
           <Ionicons
-            name="cloud-outline"
+            name={getWeatherIconName(weatherData.weather[0].icon)}
             size={48}
             color={theme.textPrimary}
             style={styles.weatherIcon}
@@ -108,7 +137,7 @@ const WeatherWidget = ({ onRefresh, showForecast = true }) => {
             <View key={index} style={styles.forecastItem}>
               <Text style={[styles.forecastTime, { color: theme.textSecondary }]}>{formatTime(item.dt)}</Text>
               <Ionicons
-                name="cloud-outline"
+                name={getWeatherIconName(item.weather[0].icon)}
                 size={24}
                 color={theme.textPrimary}
                 style={styles.forecastIcon}

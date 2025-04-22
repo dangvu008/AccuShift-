@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { getIonIconName, getWeatherDescription } from "../utils/WeatherIconsHelper"
 
@@ -30,7 +30,7 @@ const EnhancedWeatherWidget = ({ data, isDarkMode, useCustomIcons = true }) => {
           <View style={styles.currentWeatherContent}>
             <View style={styles.currentWeatherLeft}>
               <Ionicons
-                name="cloud-outline"
+                name={getIonIconName(currentWeather.condition, currentWeather.temperature)}
                 size={48}
                 color={theme.textPrimary}
                 style={styles.currentWeatherIcon}
@@ -58,7 +58,7 @@ const EnhancedWeatherWidget = ({ data, isDarkMode, useCustomIcons = true }) => {
             <View key={index} style={styles.forecastItem}>
               <Text style={[styles.forecastTime, { color: theme.textSecondary }]}>{item.time}</Text>
               <Ionicons
-                name="cloud-outline"
+                name={getIonIconName(item.condition, item.temperature)}
                 size={24}
                 color={theme.textPrimary}
                 style={styles.forecastIcon}
