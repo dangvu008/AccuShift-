@@ -1,63 +1,12 @@
-# AccuShift
-
-A shift management and tracking application built with React Native and Expo.
-
-## Running on Snack
-
-To run this application on Snack:
-
-### Method 1: Using the auto-detection
-1. Upload the code to Snack (https://snack.expo.dev/)
-2. The application will automatically detect it's running in Snack environment and use the simplified version
-
-### Method 2: Using the direct Snack entry point (recommended)
-1. Upload the code to Snack (https://snack.expo.dev/)
-2. In the Snack editor, open the App.js file
-3. Replace the content with: `export { default } from './SnackApp';`
-4. This will directly use the simplified version without any detection logic
-
-## Development
-
-For local development:
-
-```bash
-# Install dependencies
-npm install
-
-# Start the development server
-npm start
-```
-
-## Snack vs Full Version
-
-When running on Snack, a simplified version of the app is used to ensure compatibility with the Snack environment. The full version includes more features and components that may not be compatible with Snack's limitations.
-
-## Troubleshooting
-
-If you encounter element type errors in Snack:
-
-1. Use Method 2 from the "Running on Snack" section above (direct entry point)
-2. Make sure all React components have proper imports (including the React import)
-3. Check that the simplified version is being used by verifying the "Phiên bản đơn giản cho Snack" text appears
-4. If you see DOM-related errors (like "Failed to execute 'removeChild' on 'Node'"), try using the direct entry point method
-5. If issues persist, try running the prepare-snack script locally before uploading to Snack:
-   ```bash
-   npm run prepare-snack
-   ```
-
-## Direct Snack Entry
-
-For the most reliable experience on Snack, create a new file in Snack called `App.js` with this content:
-
-```javascript
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -128,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
-
+  
   // Splash screen styles
   splashContainer: {
     flex: 1,
@@ -154,4 +103,3 @@ const styles = StyleSheet.create({
     color: '#8E8E93',
   },
 });
-```
