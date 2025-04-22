@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepare-snack": "node prepare-for-snack.js"
   },
   "dependencies": {
     "clsx": "^2.0.0",
