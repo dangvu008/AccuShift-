@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react"
 import { useTheme, useWeather } from "../hooks"
-import { WeatherWidgetSkeleton } from "./skeletons/WeatherWidgetSkeleton"
+import WeatherWidgetSkeleton from "./skeletons/WeatherWidgetSkeleton"
 
 const WeatherWidget = ({ onRefresh, showForecast = true }) => {
   const { isDarkMode } = useTheme()
@@ -226,14 +226,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 4,
   },
-  loadingContainer: {
-    padding: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  loadingText: {
-    fontSize: 14,
-  },
+
   errorContainer: {
     padding: 24,
     alignItems: "center",

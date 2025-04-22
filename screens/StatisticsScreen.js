@@ -49,7 +49,7 @@ const StatisticsScreen = () => {
   // Load stats when date or period changes
   useEffect(() => {
     loadStats()
-  }, [selectedDate, selectedPeriod])
+  }, [selectedDate, selectedPeriod, loadStats])
 
   // Calculate date range based on selected period
   useEffect(() => {

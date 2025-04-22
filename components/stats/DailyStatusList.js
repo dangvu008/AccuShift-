@@ -1,8 +1,7 @@
 "use client"
 import { View, Text, StyleSheet, FlatList } from "react-native"
 import { format, parseISO } from "date-fns"
-import { vi } from "date-fns/locale/vi"
-import { enUS } from "date-fns/locale/en-US"
+import { getLocale } from "../../utils/localeHelper"
 
 const DailyStatusList = ({ month, dailyWorkStatus, getStatusColor, theme, language = "en" }) => {
   // Filter work status for the selected month
@@ -36,7 +35,7 @@ const DailyStatusList = ({ month, dailyWorkStatus, getStatusColor, theme, langua
   // Format date for display
   const formatDate = (dateString) => {
     const date = parseISO(dateString)
-    const locale = language === "vi" ? vi : enUS
+    const locale = getLocale(language)
     return format(date, "EEE, MMM dd", { locale })
   }
 

@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createStackNavigator } from "@react-navigation/stack"
 import { Ionicons } from "@expo/vector-icons"
-import { StatusBar, StyleSheet } from "react-native"
+import { StatusBar } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 // Import screens from the index.js file
@@ -248,16 +248,4 @@ const AppContent = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F2F2F7",
-  },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: "#000000",
-  },
-})
+

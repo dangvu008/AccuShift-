@@ -5,8 +5,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, RefreshCon
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Ionicons } from "@expo/vector-icons"
 import { format } from "date-fns"
-import { vi } from "date-fns/locale/vi"
-import { enUS } from "date-fns/locale/en-US"
+import { getLocale } from "../utils/localeHelper"
 
 // Import from index files
 import {
@@ -139,7 +138,7 @@ const HomeScreen = ({ navigation }) => {
 
   // Format ngày giờ theo ngôn ngữ
   const formatDateTime = (date) => {
-    const locale = language === "vi" ? vi : enUS
+    const locale = getLocale(language)
     return format(date, "EEEE, dd/MM/yyyy", { locale })
   }
 
@@ -561,25 +560,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginLeft: 8,
   },
-  historyContainer: {
-    width: "100%",
-    marginTop: 16,
-  },
-  historyTitle: {
-    fontSize: 14,
-    fontWeight: "600",
-    marginBottom: 8,
-  },
-  historyItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-  },
-  historyText: {
-    marginLeft: 8,
-    fontSize: 14,
-  },
+
   weekGridContainer: {
     borderRadius: 12,
     padding: 16,

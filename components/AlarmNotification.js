@@ -86,7 +86,7 @@ const AlarmNotification = ({
       playSound()
       startVibration()
 
-      // Animate in
+      // Start animations and effects
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
@@ -95,22 +95,10 @@ const AlarmNotification = ({
         }),
         Animated.spring(scaleAnim, {
           toValue: 1,
-          friction: 8,
-          tension: 40,
           useNativeDriver: true,
         }),
       ]).start()
     } else {
-      stopSound()
-      stopVibration()
-
-      // Reset animations
-      fadeAnim.setValue(0)
-      scaleAnim.setValue(0.9)
-    }
-
-    // Cleanup
-    return () => {
       stopSound()
       stopVibration()
     }
@@ -251,7 +239,7 @@ const AlarmNotification = ({
   )
 }
 
-const { width, height } = Dimensions.get("window")
+const { width } = Dimensions.get("window")
 
 const styles = StyleSheet.create({
   container: {
@@ -329,3 +317,4 @@ const styles = StyleSheet.create({
 })
 
 export default AlarmNotification
+
