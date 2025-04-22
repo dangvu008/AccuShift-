@@ -102,7 +102,7 @@ const AlarmNotification = ({
       stopSound()
       stopVibration()
     }
-  }, [visible])
+  }, [visible, fadeAnim, scaleAnim, stopSound, stopVibration])
 
   // Play alarm sound
   const playSound = async () => {

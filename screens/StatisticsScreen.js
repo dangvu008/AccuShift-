@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import {
   View,
   Text,
@@ -80,7 +80,7 @@ const StatisticsScreen = () => {
   }, [selectedDate, selectedPeriod])
 
   // Load statistics data
-  const loadStats = async () => {
+  const loadStats = useCallback(async () => {
     try {
       setIsLoading(true)
 
@@ -97,7 +97,7 @@ const StatisticsScreen = () => {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [selectedDate, getMonthStats])
 
   // Handle previous month
   const handlePreviousMonth = () => {
