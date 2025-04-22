@@ -1,12 +1,13 @@
 "use client"
-import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native"
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
 
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={require("../assets/icon.png")} style={styles.logo} resizeMode="contain" />
-        <Text style={styles.appName}>Workly</Text>
+        <Ionicons name="time-outline" size={80} color="#4A6FFF" style={styles.logo} />
+        <Text style={styles.appName}>AccuShift</Text>
       </View>
       <ActivityIndicator size="large" color="#4A6FFF" style={styles.loader} />
       <Text style={styles.loadingText}>Loading...</Text>

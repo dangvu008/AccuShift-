@@ -3,13 +3,7 @@ export default {
   slug: "workly",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./assets/icon.png",
   userInterfaceStyle: "automatic",
-  splash: {
-    image: "./assets/splash.png",
-    resizeMode: "contain",
-    backgroundColor: "#ffffff",
-  },
   assetBundlePatterns: ["**/*"],
   ios: {
     supportsTablet: true,
@@ -25,21 +19,7 @@ export default {
   web: {
     favicon: "./assets/favicon.png",
   },
-  plugins: [
-    [
-      "expo-notifications",
-      {
-        icon: "./assets/notification-icon.png",
-        color: "#ffffff",
-      },
-    ],
-    [
-      "expo-location",
-      {
-        locationAlwaysAndWhenInUsePermission: "Allow Workly to use your location.",
-      },
-    ],
-  ],
+  plugins: [],
   extra: {
     eas: {
       projectId: "your-project-id",

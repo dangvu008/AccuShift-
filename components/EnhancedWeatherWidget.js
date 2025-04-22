@@ -29,22 +29,12 @@ const EnhancedWeatherWidget = ({ data, isDarkMode, useCustomIcons = true }) => {
         >
           <View style={styles.currentWeatherContent}>
             <View style={styles.currentWeatherLeft}>
-              {useCustomIcons ? (
-                <Image
-                  source={require(
-                    `../assets/weather-icons/${
-                      currentWeather.condition ? currentWeather.condition.toLowerCase().replace(" ", "-") : "cloudy"
-                    }.png`,
-                  )}
-                  style={styles.currentWeatherIcon}
-                />
-              ) : (
-                <Ionicons
-                  name={`${getIonIconName(currentWeather.condition, currentWeather.temperature)}-outline`}
-                  size={48}
-                  color={theme.textPrimary}
-                />
-              )}
+              <Ionicons
+                name="cloud-outline"
+                size={48}
+                color={theme.textPrimary}
+                style={styles.currentWeatherIcon}
+              />
             </View>
             <View style={styles.currentWeatherInfo}>
               <Text style={[styles.currentTemperature, { color: theme.textPrimary }]}>
@@ -67,22 +57,12 @@ const EnhancedWeatherWidget = ({ data, isDarkMode, useCustomIcons = true }) => {
           {data.map((item, index) => (
             <View key={index} style={styles.forecastItem}>
               <Text style={[styles.forecastTime, { color: theme.textSecondary }]}>{item.time}</Text>
-              {useCustomIcons ? (
-                <Image
-                  source={require(
-                    `../assets/weather-icons/${
-                      item.condition ? item.condition.toLowerCase().replace(" ", "-") : "cloudy"
-                    }.png`,
-                  )}
-                  style={styles.forecastIcon}
-                />
-              ) : (
-                <Ionicons
-                  name={`${getIonIconName(item.condition, item.temperature)}-outline`}
-                  size={24}
-                  color={theme.textPrimary}
-                />
-              )}
+              <Ionicons
+                name="cloud-outline"
+                size={24}
+                color={theme.textPrimary}
+                style={styles.forecastIcon}
+              />
               <Text style={[styles.forecastTemperature, { color: theme.textPrimary }]}>{item.temperature}°C</Text>
             </View>
           ))}

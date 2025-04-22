@@ -64,10 +64,11 @@ const WeatherWidget = ({ onRefresh, showForecast = true }) => {
         activeOpacity={0.7}
       >
         <View style={styles.weatherMain}>
-          <Image
-            source={{ uri: getWeatherIcon(weatherData.weather[0].icon) }}
+          <Ionicons
+            name="cloud-outline"
+            size={48}
+            color={theme.textPrimary}
             style={styles.weatherIcon}
-            defaultSource={require("../assets/weather-icons/cloudy.png")}
           />
           <View style={styles.weatherInfo}>
             <Text style={[styles.temperature, { color: theme.textPrimary }]}>
@@ -106,10 +107,11 @@ const WeatherWidget = ({ onRefresh, showForecast = true }) => {
           {weatherForecast.slice(0, 5).map((item, index) => (
             <View key={index} style={styles.forecastItem}>
               <Text style={[styles.forecastTime, { color: theme.textSecondary }]}>{formatTime(item.dt)}</Text>
-              <Image
-                source={{ uri: getWeatherIcon(item.weather[0].icon) }}
+              <Ionicons
+                name="cloud-outline"
+                size={24}
+                color={theme.textPrimary}
                 style={styles.forecastIcon}
-                defaultSource={require("../assets/weather-icons/cloudy.png")}
               />
               <Text style={[styles.forecastTemp, { color: theme.textPrimary }]}>
                 {Math.round(convertTemperature(item.main.temp))}°

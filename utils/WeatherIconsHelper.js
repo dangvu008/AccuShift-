@@ -82,7 +82,8 @@ export const getWeatherIconPath = (condition, temperature) => {
     else if (temperature < 5) iconName = "snow"
   }
 
-  return require(`../assets/weather-icons/${iconName}.png`)
+  // In Snack, we can't use dynamic requires
+  return iconName
 }
 
 // Hàm lấy mô tả thời tiết dựa vào điều kiện

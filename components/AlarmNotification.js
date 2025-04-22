@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import {
   View,
   Text,
@@ -118,12 +118,10 @@ const AlarmNotification = ({
         setSound(audioSound)
       } else {
         // Use default sound if no custom sound is set
-        const { sound: audioSound } = await Audio.Sound.createAsync(require("../assets/sounds/gentle_alert.mp3"), {
-          shouldPlay: true,
-          isLooping: true,
-          volume: 1.0,
-        })
-        setSound(audioSound)
+        // In Snack, we can't use local sound files
+        console.log("No custom sound set and can't use local sound files in Snack")
+        // Just set a dummy sound object
+        setSound({ stopAsync: async () => {}, unloadAsync: async () => {} })
       }
     } catch (error) {
       console.error("Error playing alarm sound:", error)
@@ -131,13 +129,13 @@ const AlarmNotification = ({
   }
 
   // Stop alarm sound
-  const stopSound = async () => {
+  const stopSound = useCallback(async () => {
     if (sound) {
       await sound.stopAsync()
       await sound.unloadAsync()
       setSound(null)
     }
-  }
+  }, [sound])
 
   // Start vibration
   const startVibration = () => {
@@ -158,14 +156,14 @@ const AlarmNotification = ({
   }
 
   // Stop vibration
-  const stopVibration = () => {
+  const stopVibration = useCallback(() => {
     if (Platform.OS === "android") {
       Vibration.cancel()
     } else if (isVibrating) {
       clearInterval(isVibrating)
     }
     setIsVibrating(false)
-  }
+  }, [isVibrating])
 
   // Handle dismiss
   const handleDismiss = () => {
