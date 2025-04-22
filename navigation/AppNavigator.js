@@ -1,4 +1,3 @@
-"use client"
 import { createStackNavigator } from "@react-navigation/stack"
 import BottomTabNavigator from "../components/BottomTabNavigator"
 

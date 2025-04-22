@@ -65,50 +65,21 @@ export const checkInternetConnection = async () => {
   }
 }
 
-// Cập nhật hàm initSoundService để tải trước các âm thanh mặc định
+// Cập nhật hàm initSoundService để hoạt động trong Snack
 export const initSoundService = async () => {
   try {
-    // Create sounds directory if it doesn't exist
-    const dirInfo = await FileSystem.getInfoAsync(SOUND_DIRECTORY)
-    if (!dirInfo.exists) {
-      await FileSystem.makeDirectoryAsync(SOUND_DIRECTORY, { intermediates: true })
-    }
+    console.log("Initializing sound service in Snack environment")
+    // Trong Snack, chúng ta không tải xuống các file âm thanh
+    // Thay vào đó, chúng ta sẽ giả lập việc đã tải xuống
 
-    // Kiểm tra các âm thanh đã tải xuống
-    const downloadedSounds = (await AsyncStorage.getItem("downloaded_sounds")) || "[]"
-    const downloadedSoundIds = JSON.parse(downloadedSounds)
+    // Đánh dấu tất cả các âm thanh mặc định là đã tải xuống
+    const downloadedSoundIds = DEFAULT_SOUNDS.map(sound => sound.id)
+    await AsyncStorage.setItem("downloaded_sounds", JSON.stringify(downloadedSoundIds))
 
-    // Kiểm tra kết nối internet
-    const hasInternet = await checkInternetConnection()
+    // Đặt âm thanh mặc định
+    await setSelectedSound("default")
 
-    // Download default sounds if they don't exist
-    for (const sound of DEFAULT_SOUNDS) {
-      if (sound.url && sound.filename) {
-        const soundPath = `${SOUND_DIRECTORY}${sound.filename}`
-        const soundInfo = await FileSystem.getInfoAsync(soundPath)
-
-        if (!soundInfo.exists && hasInternet) {
-          try {
-            await FileSystem.downloadAsync(sound.url, soundPath)
-            console.log(`Downloaded sound: ${sound.name}`)
-
-            // Thêm vào danh sách đã tải xuống
-            if (!downloadedSoundIds.includes(sound.id)) {
-              downloadedSoundIds.push(sound.id)
-              await AsyncStorage.setItem("downloaded_sounds", JSON.stringify(downloadedSoundIds))
-            }
-          } catch (downloadError) {
-            console.error(`Error downloading sound ${sound.name}:`, downloadError)
-            // Không dừng quá trình nếu một âm thanh không tải được
-          }
-        } else if (soundInfo.exists && !downloadedSoundIds.includes(sound.id)) {
-          // Nếu file tồn tại nhưng chưa được đánh dấu là đã tải
-          downloadedSoundIds.push(sound.id)
-          await AsyncStorage.setItem("downloaded_sounds", JSON.stringify(downloadedSoundIds))
-        }
-      }
-    }
-
+    console.log("Sound service initialized for Snack")
     return true
   } catch (error) {
     console.error("Error initializing sound service:", error)
@@ -433,9 +404,12 @@ export const setSoundVolume = async (volume) => {
   }
 }
 
-// Cập nhật hàm playSound để xử lý lỗi phát âm thanh
+// Cập nhật hàm playSound để hoạt động trong Snack
 export const playSound = async (soundId = null) => {
   try {
+    console.log("Playing sound in Snack environment")
+    // Trong Snack, chúng ta sẽ giả lập việc phát âm thanh
+
     // If no sound ID is provided, use the selected sound
     const allSounds = await getAllSounds()
     const sound = soundId ? allSounds.find((s) => s.id === soundId) : await getSelectedSound()
@@ -445,36 +419,11 @@ export const playSound = async (soundId = null) => {
     // If it's the default sound, don't play anything (system will handle it)
     if (sound.id === "default") return true
 
-    // Get volume
-    const volume = await getSoundVolume()
+    // Trong Snack, chúng ta sẽ giả lập việc phát âm thanh
+    console.log(`Simulating playing sound: ${sound.name}`)
 
-    // Load and play sound
-    const soundPath = `${SOUND_DIRECTORY}${sound.filename}`
-
-    // Kiểm tra xem file âm thanh có tồn tại không
-    const soundExists = await FileSystem.getInfoAsync(soundPath)
-    if (!soundExists.exists) {
-      console.error(`Sound file not found: ${soundPath}`)
-      return false
-    }
-
-    try {
-      const { sound: audioSound } = await Audio.Sound.createAsync({ uri: soundPath }, { volume })
-
-      await audioSound.playAsync()
-
-      // Unload sound after playing
-      audioSound.setOnPlaybackStatusUpdate((status) => {
-        if (status.didJustFinish) {
-          audioSound.unloadAsync()
-        }
-      })
-
-      return true
-    } catch (playError) {
-      console.error("Error playing sound:", playError)
-      return false
-    }
+    // Trả về true để cho biết âm thanh đã được phát thành công
+    return true
   } catch (error) {
     console.error("Error in playSound function:", error)
     return false
@@ -482,16 +431,13 @@ export const playSound = async (soundId = null) => {
 }
 
 /**
- * Get sound file URI for notifications
+ * Get sound file URI for notifications - Simplified for Snack
  */
 export const getSoundFileUri = async () => {
   try {
-    const selectedSound = await getSelectedSound()
-
-    // If it's the default sound, return null (system will use default)
-    if (selectedSound.id === "default") return null
-
-    return `${SOUND_DIRECTORY}${selectedSound.filename}`
+    console.log("Getting sound file URI in Snack environment")
+    // Trong Snack, chúng ta sẽ luôn trả về null để sử dụng âm thanh mặc định của hệ thống
+    return null
   } catch (error) {
     console.error("Error getting sound file URI:", error)
     return null

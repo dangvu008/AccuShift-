@@ -11,13 +11,11 @@ export default {
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./assets/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
     package: "com.yourcompany.workly",
   },
   web: {
-    favicon: "./assets/favicon.png",
   },
   plugins: [],
   extra: {

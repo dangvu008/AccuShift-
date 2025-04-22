@@ -1,5 +1,3 @@
-"use client"
-
 import { createContext, useState, useEffect } from "react"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as Notifications from "expo-notifications"
